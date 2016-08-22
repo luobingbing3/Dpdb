@@ -25,13 +25,13 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 	
 3. pycharm [Download](https://www.jetbrains.com/pycharm/download/) <br>
 	`from flaskext.mysql import MySQL` 时会有`unresolved reference`的**错误**。按以下步骤解决。
-	- `command + ,` -> `Project Interpreter`
+	- `command + ,` -> `Project Interpreter` <br>
 	![pycharm-conf-1](./conf-pic/pycharm-conf-1.png)
 	
-	- 进入`Add local` 选择 `venv/bin/pyhon`
+	- 进入`Add local` 选择 `venv/bin/pyhon` <br>
 	![pycharm-conf-2](./conf-pic/pycharm-conf-2.png)
 	
-	- 此时，可以在package里看到已安装的package
+	- 此时，可以在package里看到已安装的package <br>
 	![pycharm-conf-3](./conf-pic/pycharm-conf-3.png)
 	
 	- 点击确认之后，可以看到 `import Mysql` 已成功。
