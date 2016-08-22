@@ -66,7 +66,7 @@ Some details to be continue...
 	我们把自己的东西往里加吧？以这个为模板。感觉如何？<br>
 	2016.08.20
 
-> Lyu @ Luo: 外面分别去完成index.html 与 showResult.html<br>
+> Lyu @ Luo: 外面分别去完成homepagei.html 与 showResult.html<br>
 	2016.08.22
 	
 

@@ -17,6 +17,10 @@ mysql.init_app(app)
 def main():
     return render_template('index.html')
 
+@app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
+
 @app.route('/showResult')
 def showResult():
     return render_template('showResult.html')
