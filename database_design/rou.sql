@@ -1,10 +1,11 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/8/19 0:18:36                            */
+/* Created on:     2016/8/22 15:28:54                           */
 /*==============================================================*/
-create database dpdb;
 
-use dpdb;
+create database Dpdb;
+
+use Dpdb;
 
 drop table if exists coach;
 
@@ -17,8 +18,9 @@ drop table if exists student;
 /*==============================================================*/
 create table coach
 (
-   id                   int,
-   name                 varchar(128)
+   id                   int not null,
+   name                 varchar(128),
+   primary key (id)
 );
 
 /*==============================================================*/
@@ -33,7 +35,6 @@ create table lesson
    number               int,
    weight               int,
    height               int,
-   index3               int,
    primary key (id)
 );
 
