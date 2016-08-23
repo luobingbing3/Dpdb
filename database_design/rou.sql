@@ -1,9 +1,11 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/8/22 15:28:54                           */
+/* Created on:     2016/8/23 10:22:21                           */
 /*==============================================================*/
 
-create database Dpdb;
+drop database if exists Dpdb;
+
+create database Dpdb CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 use Dpdb;
 
@@ -18,8 +20,8 @@ drop table if exists student;
 /*==============================================================*/
 create table coach
 (
-   id                   int not null,
-   name                 varchar(128),
+   id                   bigint not null,
+   name                 varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
    primary key (id)
 );
 
@@ -28,13 +30,32 @@ create table coach
 /*==============================================================*/
 create table lesson
 (
-   id                   int not null auto_increment,
-   coach_id             int,
-   student_id           int,
+   id                   bigint not null auto_increment,
+   coach_id             bigint,
+   student_id           bigint,
    date                 date,
    number               int,
-   weight               int,
-   height               int,
+   weight               float,
+   blood_pressure_before int,
+   blood_pressure_after int,
+   c                    int,
+   body_fat_chest       int,
+   body_fat_abdomen     int,
+   body_fat_leg         int,
+   body_fat             float,
+   chest_circumference_max int,
+   waistline_navel      int,
+   hipline              int,
+   WHR                  float,
+   arms                 float,
+   thigh_circumference  float,
+   calf_circumference   float,
+   push_up              int,
+   trx                  int,
+   squat                int,
+   plank                int,
+   balance_left         int,
+   balance_right        int,
    primary key (id)
 );
 
@@ -43,10 +64,12 @@ create table lesson
 /*==============================================================*/
 create table student
 (
-   id                   int not null,
-   name                 varchar(128),
+   id                   bigint not null,
+   name                 varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
+   gender               varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci,
    age                  int,
-   coach_id             int,
+   height               int,
+   coach_id             bigint,
    primary key (id)
 );
 
