@@ -9,7 +9,6 @@ $(function () {
             type: 'GET',
             success: function (data) {
                 var student_list = data.student_list;
-                console.log(student_list);
                 var stuSel = $('#student_select').get(0);
 
                 while (stuSel.options.length > 1) {
@@ -21,11 +20,11 @@ $(function () {
                     opt.id = student_list[i][0];
                     stuSel.add(opt, null);
                 }
+                document.getElementById("student_select").selectedIndex = 0;
                 console.log(data);
             },
             error: function (error) {
                 console.log(error);
-                console.log("???")
             }
 
         });
