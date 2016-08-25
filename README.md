@@ -20,8 +20,9 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 	`virtualenv venv` <br>
 	`sudo pip install flask`	
 	
-2. flask-mysql <br>
+2. flask-mysql, pygal <br>
 	`sudo pip install flask-mysql`
+	`sudo pip install pygal`
 	
 3. pycharm [Download](https://www.jetbrains.com/pycharm/download/) <br>
 	`from flaskext.mysql import MySQL` 时会有`unresolved reference`的**错误**。按以下步骤解决。
@@ -66,9 +67,13 @@ Some details to be continue...
 	我们把自己的东西往里加吧？以这个为模板。感觉如何？<br>
 	2016.08.20
 
-> Lyu @ Luo: 外面分别去完成homepagei.html 与 showResult.html<br>
+> Lyu @ Luo: 
+    外面分别去完成homepagei.html 与 showResult.html<br>
 	2016.08.22
 	
+> Lyu @ Luo: 
+    我已经把画图和下拉基本功能实现了. <br>
+    2016.08.26
 
 
 

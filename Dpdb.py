@@ -2,7 +2,6 @@
 from flask import Flask, render_template, request, jsonify
 from flaskext.mysql import MySQL
 import dropDown
-import pygal
 import graphing
 
 app = Flask(__name__)
