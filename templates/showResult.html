@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:float="http://www.w3.org/1999/xhtml">
 <head>
     <title>result page.</title>
     <script src="../static/js/jquery-3.1.0.js"></script>
@@ -9,19 +9,27 @@
 
 
 <select id = "coach_select" size = 8>
-    <option id="0" selected>教练平均</option>
+{#    <option id="0" selected>教练平均</option>#}
     {% for r in coach_info %}
         <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }}</option>
     {% endfor %}
 </select>
 
 <select id = "student_select" size = 8>
-    <option id="0" selected>学员平均</option>
+{#    <option id="0" selected>学员平均</option>#}
     {%  for r in student_info %}
         <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }} </option>
     {%  endfor %}
 </select>
+
 <br>
 
+<div id = "graphs">
+    {% for i in range(7) %}
+    <span>
+        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:350px"/>
+    </span>
+    {% endfor %}
+</div>
 </body>
 </html>
