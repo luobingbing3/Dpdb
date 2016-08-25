@@ -53,7 +53,11 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 2. 
 
 ## From Luo
-Some details to be continue...
+# connect database
+# 为了防止插入数据库汉字出现乱码:
+# 1. connect中设置charset='utf8'
+# 2. 保证数据库和表的编码都是utf8
+# 3. 保证pythonFile采用utf8编码
 
 
 ## From Lyu

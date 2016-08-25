@@ -21,7 +21,7 @@ drop table if exists student;
 create table coach
 (
    id                   bigint not null,
-   name                 varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
+   name_                varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
    primary key (id)
 );
 
@@ -33,19 +33,19 @@ create table lesson
    id                   bigint not null auto_increment,
    coach_id             bigint,
    student_id           bigint,
-   date                 date,
-   number               int,
+   date_                date,
+   number_               int,
    weight               float,
    blood_pressure_before int,
    blood_pressure_after int,
-   c                    int,
+   heart_rate           int,
    body_fat_chest       int,
    body_fat_abdomen     int,
    body_fat_leg         int,
    body_fat             float,
-   chest_circumference_max int,
-   waistline_navel      int,
-   hipline              int,
+   chest_circumference_max float,
+   waistline_navel      float,
+   hipline              float,
    WHR                  float,
    arms                 float,
    thigh_circumference  float,
@@ -65,7 +65,7 @@ create table lesson
 create table student
 (
    id                   bigint not null,
-   name                 varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
+   name_                varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci,
    gender               varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci,
    age                  int,
    height               int,
@@ -73,3 +73,4 @@ create table student
    primary key (id)
 );
 
+SET SQL_SAFE_UPDATES = 0;
