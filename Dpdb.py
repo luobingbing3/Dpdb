@@ -70,7 +70,6 @@ def upload_succeeded():
         return render_template('upload_error.html', error=e)
 
 
-
 @app.route('/filterStudent', methods=['GET', 'POST'])
 def filterStudent():
     current_coach = request.args.get('choice', 0, type=int)
