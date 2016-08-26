@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link href="bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet">
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <h3 class="text-muted">请上传您的Excel文件:</h3>
+   </div>
+   <hr/>
+   <div>
+   <form action="upload_succeeded" method="post" enctype="multipart/form-data">
+   <input type="file" accept="application/vnd.ms-excel,
+   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          multiple="multiple" name="file[]" class="span3" /><br/>
+    <input type="submit" value="上传" class="span2">
+   </form>
+   </div>
+   <div><a href=http://127.0.0.1:5000>返回</a></div>
+  </div>
+ </body>
+</html>

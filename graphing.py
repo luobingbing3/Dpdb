@@ -44,9 +44,3 @@ def draw(cursor, stu_id, stu_text):
         gi = graph_line.render_data_uri()
         graph_info.append(gi)
     return graph_info
-
-
-
-
-
-

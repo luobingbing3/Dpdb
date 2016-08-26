@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <link href="bootstrap/3.0.0/css/bootstrap.min.css"
+     rel="stylesheet">
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <h3 class="text-muted">上传成功!</h3>
+   </div>
+   <hr/>
+   <div>
+   以下是您刚才上传的文件:
+   <ul>
+    {% for file in filenames %}
+     <li>{{file}}</li>
+    {% endfor %}
+   </ul>
+   </div>
+   <hr/>
+   <div><a href=http://127.0.0.1:5000/upload_homepage>返回</a></div>
+   </div>
+ </body>
+</html>
