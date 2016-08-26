@@ -1,6 +1,9 @@
 .idea/*
 *.pyc
+<<<<<<< HEAD
 
 database_design/rou.sql
 
 Dpdb.py
+=======
+>>>>>>> Angryrou/master

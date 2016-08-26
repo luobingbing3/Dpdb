@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def init(cursor):
     """get the default dropdown-select option results(id & name_) from mysql when open the whoResult.html"""
     coach_info = []
@@ -16,7 +17,8 @@ def init(cursor):
         student_info.append((row[0], row[1]))
     return coach_info, student_info
 
-def filter(current_coach, cursor):
+
+def filter( cursor, current_coach):
     """get the selected dropdown option results(id & name_) from mysql after new choice made."""
     student_list = []
     sql = "select id, name_ from student "
