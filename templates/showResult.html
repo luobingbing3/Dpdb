@@ -24,12 +24,26 @@
 
 <br>
 
-<div id = "graphs">
+<form>
+  <input type="radio" name="x_label" value="number" checked> 课次<br>
+  <input type="radio" name="x_label" value="date"> 日期<br>
+</form>
+
+<div id = "graphs_numbers">
     {% for i in range(7) %}
     <span>
-        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:350px"/>
+        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:500px"/>
     </span>
     {% endfor %}
 </div>
+
+<div id = "graphs_date" style="display: none;">
+    {% for i in range(7) %}
+    <span>
+        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:500px"/>
+    </span>
+    {% endfor %}
+</div>
+
 </body>
 </html>
