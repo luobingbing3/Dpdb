@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pygal
 from datetime import date
+from pygal.style import Style
 
 def graph_line_init():
     graph = []
@@ -44,19 +45,19 @@ def draw(cursor, stu_id, stu_text, opt):
             data_line = []
             for row in results:
                 data_line.append((row[7], row[i]))
-            graph_line.add(stu_text, data_line)
+            graph_line.add(stu_text.replace(' ', ''), data_line)
             gi = graph_line.render_data_uri()
             graph_info.append(gi)
     else :
         for i in range(7):
-            graph_line = pygal.DateLine(x_label_rotation=25)
+            graph_line = pygal.DateLine(title=graph_title[i], x_label_rotation=25)
             graph_line.x_value_formatter=lambda dt:dt.strftime('%y.%m.%d')
             graph_line.x_title = u'日期'
             graph_line.y_title = graph_y_title[i]
             data_line = []
             for row in results:
                 data_line.append((row[7], row[i]))
-            graph_line.add(stu_text, data_line)
+            graph_line.add(stu_text.replace(' ', ''), data_line)
             gi = graph_line.render_data_uri()
             graph_info.append(gi)
 

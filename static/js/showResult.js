@@ -24,7 +24,7 @@ $(function () {
                 var student_list = data.student_list;
                 var stuSel = $('#student_select').get(0);
 
-                while (stuSel.options.length > 0) {
+                while (stuSel.options.length > 1) {
                     stuSel.remove(stuSel.options.length - 1);
                 }
                 for (var i = 0; i < student_list.length; i++) {
