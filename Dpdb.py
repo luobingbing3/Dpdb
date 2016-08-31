@@ -37,8 +37,8 @@ def upload_homepage():
 
 
 # Route that will process the file upload
-@app.route('/upload_succeeded', methods=['POST'])
-def upload_succeeded():
+@app.route('/upload_result', methods=['POST'])
+def upload_result():
     try:
         # Get the name of the uploaded files
         uploaded_files = request.files.getlist("file[]")

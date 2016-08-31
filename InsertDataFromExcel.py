@@ -15,6 +15,7 @@ def insertDataFromExcel(name_excel, host_='localhost', user_='root', passwd_='11
         conn = MySQLdb.connect(host=host_, user=user_, passwd=passwd_, db=db_, charset='utf8')
     except Exception, e:
         return e
+    conn.autocommit(0)
     cursor = conn.cursor()
 
     try:
@@ -53,9 +54,9 @@ def insertDataFromExcel(name_excel, host_='localhost', user_='root', passwd_='11
             row = row.drop([u'姓名', u'年龄（岁）', u'教练姓名', u'身高（cm）', u'性别'])
             # 检查重复行,若发现重复行,则覆盖. 若非重复行,则插入
             cursor.callproc('sp_insertData', row)
-            conn.commit()
     except Exception, e:
         return e
+    cursor.commit()
     cursor.close()
     conn.close()
     return 1
