@@ -25,6 +25,8 @@ def filter( cursor, current_coach):
     if current_coach != 0:
         sql += "where coach_id = " + str(current_coach)
         print sql
+    else :
+        print sql
     cursor.execute(sql)
     results = cursor.fetchall()
     for row in results:

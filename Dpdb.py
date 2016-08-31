@@ -125,9 +125,11 @@ def drawLines():
         db = mysql.connect()
         cursor = db.cursor()
         try:
-            graph_info = graphing.draw(cursor, stu_id, stu_text)
-            return jsonify(graph_info=graph_info)
-        except:
+            graph_info_date = graphing.draw(cursor, stu_id, stu_text, "date_")
+            graph_info_num = graphing.draw(cursor, stu_id, stu_text, "number_")
+            return jsonify(graph_info_date = graph_info_date, graph_info_num = graph_info_num)
+        except Exception as e:
+            print str(e)
             print "drawLines - step2 failed."
     except Exception as e:
         print "drawLines - step1 failed."

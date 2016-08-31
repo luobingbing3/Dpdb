@@ -1,0 +1,23 @@
+.select {
+    padding:5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    border: 0px;
+}
+
+form {
+    padding:5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+.stu_filter {
+    float : left;
+    margin: 20px;
+}

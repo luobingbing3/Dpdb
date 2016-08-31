@@ -21,10 +21,11 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 	`sudo pip install flask`	
 	
 
-2. flask-mysql, pandas, pygal <br>
-	`sudo pip install flask-mysql`
-    `sudo pip install pandas`
-    `sudo pip install pygal`
+2. flask-mysql, pandas, pygal, xlrd <br>
+	`sudo pip install flask-mysql` <br>
+    `sudo pip install pandas` <br>
+    `sudo pip install pygal` <br>
+    `sudo pip install xlrd`
 
 	
 3. pycharm [Download](https://www.jetbrains.com/pycharm/download/) <br>
@@ -42,8 +43,9 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 
 4. mysql 与 MYSQLWorkbench [Download](http://dev.mysql.com/downloads/mysql/)
 	- 进入Mysql Workbench.
-	- File -> Open SQL Script -> Find ./Database_Design/rou.sql
-	- Excute 
+	- File -> Open SQL Script -> Find ./database_design/rou.sql -> Excute 
+	- Find ./database_design/sp_insertData.sql -> Excute
+	- Find ./database_design/sp_insertStuCoach.sql -> Excute
 
 至此，配置基本结束。
 
@@ -57,11 +59,11 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 2. 
 
 ## From Luo
-# connect database
-# 为了防止插入数据库汉字出现乱码:
-# 1. connect中设置charset='utf8'
-# 2. 保证数据库和表的编码都是utf8
-# 3. 保证pythonFile采用utf8编码
+### connect database
+- 为了防止插入数据库汉字出现乱码:
+	1. connect中设置charset='utf8'
+	2. 保证数据库和表的编码都是utf8
+	3. 保证pythonFile采用utf8编码
 
 1. 创建好数据库之后，在Mysql workbench中运行’sp_insertStuCoach.sql‘，’sp_inserData.sql‘两个脚本，将两个过程存储入数据库当中；
 2. 在点击进入上传界面时，点击‘选择文件’按钮，弹出对话框，选择excel(.xls, .xlsx)文件，可多选。点击‘上传’按钮，会弹出上传结果。若失败，则会输出错误信息；若上传成功，则会显示已上传的文件名，点击‘返回’可以返回至上一层。

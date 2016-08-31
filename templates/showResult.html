@@ -4,32 +4,56 @@
     <title>result page.</title>
     <script src="../static/js/jquery-3.1.0.js"></script>
     <script src="../static/js/showResult.js"></script>
+    <link rel="stylesheet" href="../static/css/style_lyu.css">
 </head>
 <body>
 
+<h1>学员筛选设置</h1>
+<div class = "stu_filter">
+    <div>
+        教官选择
+        <select class = "select" id = "coach_select">
+            <option id="0" selected>All</option>
+             {% for r in coach_info %}
+                <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }}</option>
+             {% endfor %}
+        </select>
+    </div>
+    <div >
+        学员选择
+        <select class = "select" id = "student_select">
+            <option id="0" selected>None</option>
+            {%  for r in student_info %}
+                <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }} </option>
+            {%  endfor %}
+        </select>
+    </div>
+</div>
 
-<select id = "coach_select" size = 8>
-{#    <option id="0" selected>教练平均</option>#}
-    {% for r in coach_info %}
-        <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }}</option>
-    {% endfor %}
-</select>
+<div class = "stu_filter" style="margin-top: 25px">时间单位选择 <form>
+  <input type="radio" name="x_label" value="number" checked> 课次<br>
+  <input type="radio" name="x_label" value="date"> 日期<br>
+</form>
+</div>
 
-<select id = "student_select" size = 8>
-{#    <option id="0" selected>学员平均</option>#}
-    {%  for r in student_info %}
-        <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }} </option>
-    {%  endfor %}
-</select>
+<div style="clear:left"></div>
+<h1>学员成绩动态图</h1>
 
-<br>
-
-<div id = "graphs">
+<div id = "graphs_numbers">
     {% for i in range(7) %}
     <span>
-        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:350px"/>
+        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:500px"/>
     </span>
     {% endfor %}
 </div>
+
+<div id = "graphs_date" style="display: none;">
+    {% for i in range(7) %}
+    <span>
+        <embed type="image/svg+xml" src={{ graph_info[i]|safe }} style="max-width:500px"/>
+    </span>
+    {% endfor %}
+</div>
+
 </body>
 </html>
