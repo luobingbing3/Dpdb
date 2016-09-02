@@ -31,7 +31,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertData`(
    IN p_balance_right        int
 )
 BEGIN
-    if ( select exists (select 1 from lesson where coach_id = p_coach_id and student_id = p_student_id and date_ = p_date_) ) THEN
+    if ( select exists (select 1 from lesson where coach_id = p_coach_id and student_id = p_student_id and date_ = p_date_ and number_ = p_number_) ) THEN
         
         UPDATE lesson SET  number_ = p_number_,
 						   weight = p_weight,
@@ -55,7 +55,7 @@ BEGIN
 						   plank = p_plank,
 						   balance_left = p_balance_left,
 						   balance_right = p_balance_right
-                           WHERE coach_id = p_coach_id and student_id = p_student_id and date_ = p_date_;
+                           WHERE coach_id = p_coach_id and student_id = p_student_id and date_ = p_date_ and number_ = p_number_;
 	ELSE
 		insert INTO lesson (coach_id,student_id, date_, number_,weight,blood_pressure_before,
           blood_pressure_after,heart_rate,body_fat_chest,body_fat_abdomen,

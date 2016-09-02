@@ -39,6 +39,9 @@ def upload_homepage():
 # Route that will process the file upload
 @app.route('/upload_result', methods=['POST'])
 def upload_result():
+    file_succeed = []
+    file_failed = []
+    error_failed = {}
     try:
         # Get the name of the uploaded files
         uploaded_files = request.files.getlist("file[]")
@@ -56,7 +59,11 @@ def upload_result():
                 # 插入数据,若插入失败,则抛出异常
                 insert_ok = insertDataFromExcel(filename)
                 if insert_ok != 1:
-                    raise insert_ok
+                    file_failed.append(filename)
+                    error_failed[filename] = insert_ok
+                    # raise insert_ok
+                else:
+                    file_succeed.append(filename)
                 # 上传之后,将文件删除
                 os.remove(filename)
                 # Save the filename into a list, we'll use it later
@@ -65,9 +72,11 @@ def upload_result():
         # 若没有选择文件点击'上传',则抛出异常
         if not filenames:
             raise Exception('No file is selected.')
-        return render_template('upload_succeeded.html', filenames=filenames)
     except Exception, e:
         return render_template('upload_error.html', error=e)
+    return render_template('upload_succeeded.html', filenames=filenames,
+                           file_succeed=file_succeed, file_failed=file_failed,
+                           error_failed=error_failed)
 
 
 @app.route('/showResult')

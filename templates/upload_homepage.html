@@ -10,15 +10,29 @@
     <h3 class="text-muted">请上传您的Excel文件:</h3>
    </div>
    <hr/>
-   <div>
+   <div class="file-box">
    <form action="upload_result" method="post" enctype="multipart/form-data">
-   <input type="file" accept="application/vnd.ms-excel,
+    <input type="file" class="file" accept="application/vnd.ms-excel,
    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-          multiple="multiple" name="file[]" class="span3" /><br/>
-    <input type="submit" value="上传" class="span2">
+          multiple="multiple" name="file[]" id="fileField" style="width:60px" /><br/>
+    <ul id='content'></ul>
+    <input type="submit" name="submit" value="上传" class="span2">
    </form>
    </div>
    <div><a href=http://127.0.0.1:5000>返回</a></div>
   </div>
  </body>
+<script>
+var test = document.getElementById('fileField');
+test.addEventListener('change', function() {
+    var t_files = this.files;
+    console.log(t_files);
+    var str = '';
+    for (var i = 0, len = t_files.length; i < len; i++) {
+        console.log(t_files[i]);
+        str += '<li>' + t_files[i].name + '</li>';
+    };
+    document.getElementById('content').innerHTML = str;
+}, false);
+</script>
 </html>
