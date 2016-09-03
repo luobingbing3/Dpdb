@@ -19,6 +19,29 @@
     <input type="submit" name="submit" value="上传" class="span2">
    </form>
    </div>
+
+    <h3>学员筛选</h3>
+   <div class = "stu_filter">
+    <div style="float:left">
+        教官选择
+        <select class = "select" id = "coach_select">
+            <option id="0" selected>All</option>
+             {% for r in coach_info %}
+                <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }}</option>
+             {% endfor %}
+        </select>
+    </div>
+    <div>
+        学员选择
+        <select class = "select" id = "student_select">
+            <option id="0" selected>None</option>
+            {%  for r in student_info %}
+                <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }} </option>
+            {%  endfor %}
+        </select>
+    </div>
+</div>
+
    <div><a href=http://127.0.0.1:5000>返回</a></div>
   </div>
  </body>

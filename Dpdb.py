@@ -33,7 +33,19 @@ def main():
 
 @app.route('/upload_homepage')
 def upload_homepage():
-    return render_template('upload_homepage.html')
+    try:
+        db = mysql.connect()
+        cursor = db.cursor()
+        try:
+            coach_info, student_info = dropDown.init(cursor)
+            return render_template('upload_homepage.html', coach_info=coach_info, student_info=student_info)
+        except:
+            print "Error: unable to fetch data"
+    except Exception as e:
+        return str(e)
+    finally:
+        cursor.close()
+        db.close()
 
 
 # Route that will process the file upload
