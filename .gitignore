@@ -3,3 +3,4 @@
 *.swp
 .DS_Store
 database_design/.DS_Store
+test.py
