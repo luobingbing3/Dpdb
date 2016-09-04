@@ -33,12 +33,27 @@ def main():
 
 @app.route('/upload_homepage')
 def upload_homepage():
-    return render_template('upload_homepage.html')
+    try:
+        db = mysql.connect()
+        cursor = db.cursor()
+        try:
+            coach_info, student_info = dropDown.init(cursor)
+            return render_template('upload_homepage.html', coach_info=coach_info, student_info=student_info)
+        except:
+            print "Error: unable to fetch data"
+    except Exception as e:
+        return str(e)
+    finally:
+        cursor.close()
+        db.close()
 
 
 # Route that will process the file upload
-@app.route('/upload_succeeded', methods=['POST'])
-def upload_succeeded():
+@app.route('/upload_result', methods=['POST'])
+def upload_result():
+    file_succeed = []
+    file_failed = []
+    error_failed = {}
     try:
         # Get the name of the uploaded files
         uploaded_files = request.files.getlist("file[]")
@@ -56,7 +71,11 @@ def upload_succeeded():
                 # 插入数据,若插入失败,则抛出异常
                 insert_ok = insertDataFromExcel(filename)
                 if insert_ok != 1:
-                    raise insert_ok
+                    file_failed.append(filename)
+                    error_failed[filename] = insert_ok
+                    # raise insert_ok
+                else:
+                    file_succeed.append(filename)
                 # 上传之后,将文件删除
                 os.remove(filename)
                 # Save the filename into a list, we'll use it later
@@ -65,9 +84,11 @@ def upload_succeeded():
         # 若没有选择文件点击'上传',则抛出异常
         if not filenames:
             raise Exception('No file is selected.')
-        return render_template('upload_succeeded.html', filenames=filenames)
     except Exception, e:
         return render_template('upload_error.html', error=e)
+    return render_template('upload_succeeded.html', filenames=filenames,
+                           file_succeed=file_succeed, file_failed=file_failed,
+                           error_failed=error_failed)
 
 
 @app.route('/showResult')

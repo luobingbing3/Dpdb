@@ -7,14 +7,27 @@
  <body>
   <div class="container">
    <div class="header">
-    <h3 class="text-muted">上传成功!</h3>
+    <h3 class="text-muted">上传结果:</h3>
    </div>
    <hr/>
    <div>
-   以下是您刚才上传的文件:
+   上传成功的文件:
    <ul>
-    {% for file in filenames %}
+    {% for file in file_succeed %}
      <li>{{file}}</li>
+    {% endfor %}
+   </ul>
+   </div>
+   <div>
+   上传失败的文件:
+   <ul>
+    {% for filename in file_failed %}
+     <li>{{filename}}</li>
+          <ul>
+          {% for err in error_failed[filename] %}
+           <li>{{err}}</li>
+          {% endfor %}
+         </ul>
     {% endfor %}
    </ul>
    </div>
