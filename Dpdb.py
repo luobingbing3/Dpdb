@@ -6,6 +6,7 @@ import os
 import pygal
 import dropDown
 import graphing
+import showAndDelete
 
 app = Flask(__name__)
 
@@ -158,6 +159,92 @@ def drawLines():
     finally:
         cursor.close()
         db.close()
+
+
+@app.route('/showItems')
+def showItems():
+    """ author: Luo
+        show Items according to coach_id and stu_id selected
+    """
+    row_index = [u'教练ID', u'学员ID', u'日期', u'课程次数', u'体重（kg）',
+                 u'血压（高压）mmgh（运动前）', u'血压（低压）mmgh（运动前）',
+                 u'心率（次/min）', u'体脂（胸、三头）mm', u'体脂（腹、髂）mm',
+                 u'体脂（大腿）mm', u'体脂含量%', u'胸围（最高处）cm',
+                 u'腰围（肚脐处）cm', u'臀围cm', u'腰臀比', u'大臂围cm', u'大腿围cm',
+                 u'小腿围cm', u'推（俯卧撑）次', u'拉（trx或引体向上）次',
+                 u'蹲（静蹲）s', u'核心（平板支撑）s', u'平衡（左）s', u'平衡（右）s']
+    stu_id = request.args.get('stu_id', 0, type=int)
+    coach_id = request.args.get('coach_id', 0, type=int)
+    stu_text = request.args.get('stu_text')
+    print stu_id, stu_text
+    try:
+        db = mysql.connect()
+        cursor = db.cursor()
+        try:
+            selected_items = showAndDelete.selectItemsFromLesson(cursor, coach_id, stu_id)
+            item_no = len(selected_items)
+            return jsonify(selected_items=selected_items, item_no=item_no, row_index=row_index)
+        except Exception as e:
+            print str(e)
+            print "drawLines - step2 failed."
+    except Exception as e:
+        print "drawLines - step1 failed."
+        return str(e)
+    finally:
+        cursor.close()
+        db.close()
+
+
+@app.route('/updateData')
+def updateData():
+    update_data = request.args.get('update_data')
+    delete_id = request.args.get('delete_id')
+    data_list = []
+
+    print data_list
+    try:
+        db = mysql.connect()
+        cursor = db.cursor()
+        try:
+            if update_data:
+                print 'update_data'
+                raw_data_list = update_data.split(',')
+                for row in raw_data_list:
+                    row_list = row.split('&')
+                    for i in range(len(row_list)):
+                        temp = row_list[i].split('=')
+                        if len(temp) == 2:
+                            row_list[i] = temp[1]
+                    data_list.append(row_list)  # 需要递交修改的行内容
+
+                for i in range(len(data_list)):
+                    for j in range(4):
+                        del data_list[i][1]  # 只上传后四项内容
+                    for j in range(len(data_list[i])):
+                        if not data_list[i][j]:
+                            data_list[i][j] = None  # 若输入为空,则保证空值能输入至数据库
+                    cursor.callproc('sp_updateData', data_list[i])
+
+            if delete_id:
+                delete_id_list = delete_id.split(',')
+                for item_d in delete_id_list:
+                    sql = 'delete from lesson where id = ' + str(item_d)
+                    print sql
+                    cursor.execute(sql)
+
+            db.commit()
+        except Exception as e:
+            print str(e)
+            return jsonify("保存至数据库失败: " + str(e))
+    except Exception as e:
+        return str(e)
+        return jsonify("保存至数据库失败: " + str(e))
+    finally:
+        cursor.close()
+        db.close()
+
+    print data_list
+    return jsonify("保存至数据库成功!")
 
 if __name__ == '__main__':
     app.run()
