@@ -163,6 +163,7 @@ def drawLines():
 
 @app.route('/showItems')
 def showItems():
+    
     """ author: Luo
         show Items according to coach_id and stu_id selected
     """
