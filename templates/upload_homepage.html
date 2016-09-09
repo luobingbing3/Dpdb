@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-  <link href="bootstrap/3.0.0/css/bootstrap.min.css"
-  rel="stylesheet">
+
+    <script src="../static/js/jquery-3.1.0.js"></script>
+    <script src="../static/js/showAndDelete.js"></script>
+     <script src="../static/js/grid.locale-en.js" type="text/javascript"></script>
+    <script src="../static/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+     <script src="../static/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="../static/jquery-ui/jquery-ui.min.css" type="text/css" media="screen"
+        rel="stylesheet">
+     <link href="../static/css/ui.jqgrid.css" type="text/css" media="screen"
+        rel="stylesheet">
  </head>
  <body>
   <div class="container">
    <div class="header">
     <h3 class="text-muted">请上传您的Excel文件:</h3>
    </div>
-   <hr/>
+
    <div class="file-box">
    <form action="upload_result" method="post" enctype="multipart/form-data">
     <input type="file" class="file" accept="application/vnd.ms-excel,
@@ -19,10 +27,10 @@
     <input type="submit" name="submit" value="上传" class="span2">
    </form>
    </div>
-
-    <h3>学员筛选</h3>
+ <hr/>
+    <h3>学员情况表</h3>
    <div class = "stu_filter">
-    <div style="float:left">
+    <div style="float:left; margin-right: 20px">
         教官选择
         <select class = "select" id = "coach_select">
             <option id="0" selected>All</option>
@@ -31,8 +39,7 @@
              {% endfor %}
         </select>
     </div>
-    <div>
-        学员选择
+    <div>学员选择
         <select class = "select" id = "student_select">
             <option id="0" selected>None</option>
             {%  for r in student_info %}
@@ -40,9 +47,14 @@
             {%  endfor %}
         </select>
     </div>
+       <input type="BUTTON" id="delete_" disabled='true' value="删除" style="margin-top: 10px; margin-bottom: 10px" />
+       <input type="BUTTON" id="edit_" disabled='true' value="编辑" style="margin-top: 10px; margin-bottom: 10px"/>
+       <input type="BUTTON" id="save_" disabled='true' value="保存至数据库" style="margin-top: 10px; margin-bottom: 10px"/>
 </div>
+      <table id="info_table"></table>
+      <div id="prowed3"></div>
 
-   <div><a href=http://127.0.0.1:5000>返回</a></div>
+   <div style="margin-top: 10px"><a href=http://127.0.0.1:5000>返回</a></div>
   </div>
  </body>
 <script>

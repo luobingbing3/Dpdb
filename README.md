@@ -12,6 +12,7 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 2. Python 2.11
 3. Flask 0.11
 4. Mysql 5.7
+5. jqGrid 5.1.1
 
 ## Installation
 1. virtualenv, flask [Details](http://docs.jinkan.org/docs/flask/installation.html#virtualenv)<br>
@@ -46,7 +47,22 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 	- File -> Open SQL Script -> Find ./database_design/rou.sql -> Excute 
 	- Find ./database_design/sp_insertData.sql -> Excute
 	- Find ./database_design/sp_insertStuCoach.sql -> Excute
+	- Find ./database_design/sp_updateData.sql -> Excute
 
+5. jqGrid配置
+	- 去[jqgrid官网](http://www.trirand.com/blog/?page_id=6)下载插件，解压。
+	- 将解压后中的`jquery.jqGrid.min.js`与`grid.locale-cn.js`加入`static/js`文件夹中，将`ui.jqgrid.css`加入`static/css`中，前两个提供插件的功能支持，第二个是包括了语言转换支持，css文件为插件的外观支持。
+	- jqgrid支持自定义主题外观，可到[网站](http://jqueryui.com/download/all/)下载外观主题，下载`jquery-ui-1.12.0.custom`外观，将文件夹改名为`jquery-ui`复制进`static`文件夹中。
+	- 在`upload_homepage.html`中加入以下代码，将上述js与css文件加入:
+<pre>`	<script src="../static/js/jquery-3.1.0.js"></script>
+    <script src="../static/js/showAndDelete.js"></script>
+     <script src="../static/js/grid.locale-cn.js" type="text/javascript"></script>
+    <script src="../static/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+     <script src="../static/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="../static/jquery-ui/jquery-ui.min.css" type="text/css" media="screen"
+        rel="stylesheet">
+     <link href="../static/css/ui.jqgrid.css" type="text/css" media="screen"
+        rel="stylesheet">` </pre>
 至此，配置基本结束。
 
 
@@ -56,7 +72,6 @@ Also, this is a gift for my friend Arrow. Hope this can make sense.
 
 ## Attention
 1. Dpdb.py 中Mysql配置时的数据库名称、用户名要匹配。
-2. 
 
 ## From Luo
 ### connect database
