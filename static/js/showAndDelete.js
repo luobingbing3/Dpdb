@@ -9,21 +9,30 @@ $(function () {
             dataType: 'JSON',
             type: 'GET',
             success: function (data) {
+                $('#table_').empty();
+                var table_ = document.getElementById('table_');
+                var e = document.createElement('table');
+                e.id = "info_table";
+                table_.appendChild(e);
+
                 var student_list = data.student_list;
                 var stuSel = $('#student_select').get(0);
 
                 while (stuSel.options.length > 1) {
                     stuSel.remove(stuSel.options.length - 1);
                 }
-                var opt = document.createElement('option');
-                opt.text = 'All';
-                opt.id = '0';
-                stuSel.add(opt, null);
-                for (var i = 0; i < student_list.length; i++) {
+                if($('#coach_select option:selected').attr("id")!='0'){
                     var opt = document.createElement('option');
-                    opt.text = student_list[i][0].toString().concat(" - ", student_list[i][1].toString());
-                    opt.id = student_list[i][0];
+                    opt.text = 'All';
+                    opt.id = '0';
                     stuSel.add(opt, null);
+
+                    for (var i = 0; i < student_list.length; i++) {
+                        var opt = document.createElement('option');
+                        opt.text = student_list[i][0].toString().concat(" - ", student_list[i][1].toString());
+                        opt.id = student_list[i][0];
+                        stuSel.add(opt, null);
+                    }
                 }
                 //document.getElementById("student_select").selectedIndex = 0;
                 console.log(student_list);
@@ -35,6 +44,15 @@ $(function () {
         });
     });
     $('#student_select').change(function() {
+        if($('#student_select option:selected').attr("id") == '-1')
+            {
+                $('#table_').empty();
+                var table_ = document.getElementById('table_');
+                var e = document.createElement('table');
+                e.id = "info_table";
+                table_.appendChild(e);
+                return;
+            }
         $.ajax({
             url: '/showItems',
             data: {
@@ -49,8 +67,6 @@ $(function () {
                     $("#info_table").setGridWidth($(window).width()*0.98);
                     $("#info_table").setGridHeight($(window).height()-350);
                 });
-                if($('#student_select option:selected').attr("id") == '-1')
-                    return;
 
                 var editid = [];
                 var deleteid = [];
@@ -95,7 +111,6 @@ $(function () {
                     rowNum: -1,
                     rownumbers: true,
                     //rowList:[10,20,30,40,50,60,70,80,90,100],
-                    pager: '#prowed3',
                     sortname: 'id_',
                     viewrecords: true,
                     sortorder: "desc",
