@@ -15,6 +15,10 @@ $(function () {
                 while (stuSel.options.length > 1) {
                     stuSel.remove(stuSel.options.length - 1);
                 }
+                var opt = document.createElement('option');
+                opt.text = 'All';
+                opt.id = '0';
+                stuSel.add(opt, null);
                 for (var i = 0; i < student_list.length; i++) {
                     var opt = document.createElement('option');
                     opt.text = student_list[i][0].toString().concat(" - ", student_list[i][1].toString());
@@ -43,7 +47,10 @@ $(function () {
             success: function (data){
                 $(window).resize(function(){
                     $("#info_table").setGridWidth($(window).width()*0.98);
+                    $("#info_table").setGridHeight($(window).height()-350);
                 });
+                if($('#student_select option:selected').attr("id") == '-1')
+                    return;
 
                 var editid = [];
                 var deleteid = [];
@@ -58,7 +65,7 @@ $(function () {
                              '小腿围cm', '推（俯卧撑）次', '拉（trx或引体向上）次',
                              '蹲（静蹲）s', '核心（平板支撑）s', '平衡（左）s', '平衡（右）s'],
                     colModel:[
-                        {name:'id_',index:'id_', width:30},
+                        {name:'id_',index:'id_', width:30, hidedlg:true, hidden: true},
                         {name:'教练ID',index:'教练ID', width:45, editable:false},
                         {name:'学员ID',index:'学员ID', width:45,editable:false},
                         {name:'日期',index:'日期', width:65, align:"right",editable:false,formatter:"date",formatoptions:{srcformat:'D, d M Y H:i:s A',newformat:'ISO8601Short'}},
@@ -85,13 +92,15 @@ $(function () {
                         {name:'平衡（左）s',index:'平衡（左）s', width:70, align:"right", editable:true},
                         {name:'平衡（右）s',index:'平衡（右）s', width:70, align:"right", editable:true}
                     ],
-                    rowNum:10,
-                    rowList:[10,20,30,40,50,60,70,80,90,100],
+                    rowNum: -1,
+                    rownumbers: true,
+                    //rowList:[10,20,30,40,50,60,70,80,90,100],
                     pager: '#prowed3',
                     sortname: 'id_',
                     viewrecords: true,
                     sortorder: "desc",
                     width: $(window).width()*0.98,
+                    height: $(window).height()-350,
                     shrinkToFit:false,
                     onSelectRow: function(id){
 

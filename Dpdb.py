@@ -39,7 +39,7 @@ def upload_homepage():
         cursor = db.cursor()
         try:
             coach_info, student_info = dropDown.init(cursor)
-            return render_template('upload_homepage.html', coach_info=coach_info, student_info=student_info)
+            return render_template('upload_homepage.html', coach_info=coach_info)
         except:
             print "Error: unable to fetch data"
     except Exception as e:
@@ -163,7 +163,7 @@ def drawLines():
 
 @app.route('/showItems')
 def showItems():
-    
+
     """ author: Luo
         show Items according to coach_id and stu_id selected
     """

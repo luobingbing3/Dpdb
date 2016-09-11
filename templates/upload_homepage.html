@@ -33,7 +33,7 @@
     <div style="float:left; margin-right: 20px">
         教官选择
         <select class = "select" id = "coach_select">
-            <option id="0" selected>All</option>
+            <option id="0" selected>请选择</option>
              {% for r in coach_info %}
                 <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }}</option>
              {% endfor %}
@@ -41,7 +41,7 @@
     </div>
     <div>学员选择
         <select class = "select" id = "student_select">
-            <option id="0" selected>None</option>
+            <option id="-1" selected>请选择</option>
             {%  for r in student_info %}
                 <option id="{{ r[0] }}">{{ r[0] }} - {{ r[1] }} </option>
             {%  endfor %}
