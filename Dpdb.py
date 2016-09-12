@@ -184,7 +184,16 @@ def showItems():
         try:
             selected_items = showAndDelete.selectItemsFromLesson(cursor, coach_id, stu_id)
             item_no = len(selected_items)
-            return jsonify(selected_items=selected_items, item_no=item_no, row_index=row_index)
+            newItems = []
+            for item in selected_items:
+                newItem = []
+                for i in range(len(item)):
+                    if i == 3:
+                        newItem.append(item[3].strftime('%Y.%m.%d'))
+                    else:
+                        newItem.append(item[i])
+                newItems.append(newItem)
+            return jsonify(selected_items=newItems, item_no=item_no, row_index=row_index)
         except Exception as e:
             print str(e)
             print "drawLines - step2 failed."
